@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>修改数据视图不更新</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in obj" :key="index">{{item}}</li>
+    </ul>
+    <button @click='add'>添加新属性d</button>
+  </div>
+
+  <script>
+    new Vue({
+      el:'#app',
+      data:function(){
+        return {
+          obj:{
+            a: '这是A',
+            b: '这是B',
+            c: '这是C',
+          }
+        }
+      },
+      // computed:{
+      //   array(){
+      //     return this.xxx=this.aaa
+      //   }
+      // },
+      methods:{
+        add(){
+          // this.obj.d = '这是D'
+          this.$set(this.obj,'d', '这是D');   // 可添加
+          this.$set(this.obj,'c', '这是CC');  // 可修改
+          console.log(88, this.obj)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
